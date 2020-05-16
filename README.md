@@ -3,8 +3,9 @@
 
 简单实用方式
 
-        //原始文件路径
+        //旧文件夹路径
         String oldDirPath = "D:\\lifel\\Library\\AndroidImageHelper\\test\\original";
+        //新文件夹路径
         String newDirPath = "D:\\lifel\\Library\\AndroidImageHelper\\test\\transform";
         //旧文件名
         String oldImageName="NB.png";
