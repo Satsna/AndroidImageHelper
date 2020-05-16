@@ -10,6 +10,10 @@ import com.lifel.aih.util.LogUtils;
  */
 public class Transform {
     public String tag = this.getClass().getSimpleName();
+    
+    //文件夹类型
+    public static final int mipmap=1;
+    public static final int drawable=2;
 
     /**
      * 单个个文件重命名并且复制到指定文件夹
@@ -33,8 +37,21 @@ public class Transform {
      * @param newFileName 新文件名
      */
     public static void renameAndCopyMultipleFile(String oldDirPath, String newDirPath, String oldFileName, String newFileName) {
-        renameMultipleFile(oldDirPath, oldFileName, newFileName);
-        copyMultipleFile(oldDirPath, newDirPath, newFileName);
+    	renameAndCopyMultipleFile(oldDirPath,newDirPath,oldFileName,newFileName,null);
+    }
+    
+    /**
+     * 多个个文件重命名并且复制到指定文件夹
+     *
+     * @param oldDirPath  就文件夹
+     * @param newDirPath  新文件夹
+     * @param oldFileName 就文件名
+     * @param newFileName 新文件名
+     * @param type 类型 1:mipmap 2:drawable
+     */
+    public static void renameAndCopyMultipleFile(String oldDirPath, String newDirPath, String oldFileName, String newFileName,Integer type) {
+        renameMultipleFile(oldDirPath, oldFileName, newFileName,type);
+        copyMultipleFile(oldDirPath, newDirPath, newFileName,type);
     }
 
 
@@ -46,16 +63,37 @@ public class Transform {
      * @param newFileName 新文件名
      */
     public static void renameMultipleFile(String oldDirPath, String oldFileName, String newFileName) {
+    	renameMultipleFile(oldDirPath,oldFileName,newFileName,null);
+    }
+    
+    /**
+     * 多个文件重命名
+     *
+     * @param oldDirPath  需要重命名的文件夹路径
+     * @param oldFileName 旧文件名
+     * @param newFileName 新文件名
+     * @param type 类型 1:mipmap 2:drawable
+     */
+    public static void renameMultipleFile(String oldDirPath, String oldFileName, String newFileName,Integer type) {
+    	
+    	if(type==null) type=1;
+    	
+    	//中间文件夹
+    	String middleDirString=null;
+    	if(type==mipmap) middleDirString="mipmap";
+    	else middleDirString="drawable";
+    	
+    	
         //mipmap-mdpi
-        renameSingleFile(oldDirPath + "\\mipmap-mdpi\\" + oldFileName, newFileName);
+        renameSingleFile(oldDirPath + "\\"+middleDirString+"-mdpi\\" + oldFileName, newFileName);
         //mipmap-hdpi
-        renameSingleFile(oldDirPath + "\\mipmap-hdpi\\" + oldFileName, newFileName);
+        renameSingleFile(oldDirPath + "\\"+middleDirString+"-hdpi\\" + oldFileName, newFileName);
         //mipmap-xhdpi
-        renameSingleFile(oldDirPath + "\\mipmap-xhdpi\\" + oldFileName, newFileName);
+        renameSingleFile(oldDirPath + "\\"+middleDirString+"-xhdpi\\" + oldFileName, newFileName);
         //mipmap-xxhdpi
-        renameSingleFile(oldDirPath + "\\mipmap-xxhdpi\\" + oldFileName, newFileName);
+        renameSingleFile(oldDirPath + "\\"+middleDirString+"-xxhdpi\\" + oldFileName, newFileName);
         //mipmap-xxxhdpi
-        renameSingleFile(oldDirPath + "\\mipmap-xxxhdpi\\" + oldFileName, newFileName);
+        renameSingleFile(oldDirPath + "\\"+middleDirString+"-xxxhdpi\\" + oldFileName, newFileName);
     }
 
     /**
@@ -114,16 +152,38 @@ public class Transform {
      * @param fileName   文件名
      */
     public static void copyMultipleFile(String oldDirPath, String newDirPath, String fileName) {
+    	copyMultipleFile(oldDirPath,newDirPath,fileName,null);
+    }
+    
+    
+    /**
+     * 多个文件复制
+     *
+     * @param oldDirPath 旧文件夹路径
+     * @param newDirPath 新文件夹路径
+     * @param fileName   文件名
+     * @param type 类型 1:mipmap 2:drawable
+     */
+    public static void copyMultipleFile(String oldDirPath, String newDirPath, String fileName,Integer type) {
+    	
+    	if(type==null) type=1;
+    	
+    	//中间文件夹
+    	String middleDirString=null;
+    	if(type==mipmap) middleDirString="mipmap";
+    	else middleDirString="drawable";
+    	
+    	
         //mipmap-mdpi
-        copySingleFile(oldDirPath + "\\mipmap-mdpi\\" + fileName, newDirPath + "\\mipmap-mdpi\\" + fileName);
+        copySingleFile(oldDirPath + "\\"+middleDirString+"-mdpi\\" + fileName, newDirPath + "\\mipmap-mdpi\\" + fileName);
         //mipmap-hdpi
-        copySingleFile(oldDirPath + "\\mipmap-hdpi\\" + fileName, newDirPath + "\\mipmap-hdpi\\" + fileName);
+        copySingleFile(oldDirPath + "\\"+middleDirString+"-hdpi\\" + fileName, newDirPath + "\\mipmap-hdpi\\" + fileName);
         //mipmap-xhdpi
-        copySingleFile(oldDirPath + "\\mipmap-xhdpi\\" + fileName, newDirPath + "\\mipmap-xhdpi\\" + fileName);
+        copySingleFile(oldDirPath + "\\"+middleDirString+"-xhdpi\\" + fileName, newDirPath + "\\mipmap-xhdpi\\" + fileName);
         //mipmap-xxhdpi
-        copySingleFile(oldDirPath + "\\mipmap-xxhdpi\\" + fileName, newDirPath + "\\mipmap-xxhdpi\\" + fileName);
+        copySingleFile(oldDirPath + "\\"+middleDirString+"-xxhdpi\\" + fileName, newDirPath + "\\mipmap-xxhdpi\\" + fileName);
         //mipmap-xxxhdpi
-        copySingleFile(oldDirPath + "\\mipmap-xxxhdpi\\" + fileName, newDirPath + "\\mipmap-xxxhdpi\\" + fileName);
+        copySingleFile(oldDirPath + "\\"+middleDirString+"-xxxhdpi\\" + fileName, newDirPath + "\\mipmap-xxxhdpi\\" + fileName);
 
     }
 }
