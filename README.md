@@ -1,7 +1,7 @@
 # AndroidImageHelper
 适用于AndroidStudio中图片资源mipmap-mdpi mipmap-hdpi mipmap-xhdpi mipmap-xxhdpi mipmap-xxxhdpi  的快速重命名及快速复制到工作空间
 
-#简单实用方式
+简单实用方式
 
         //原始文件路径
         String oldDirPath = "D:\\lifel\\Library\\AndroidImageHelper\\test\\original";
@@ -13,3 +13,5 @@
 
         Transform.renameAndCopyMultipleFile(oldDirPath,newDirPath,oldImageName,newImageName);
         LogUtils.log("转换完成");
+        
+
